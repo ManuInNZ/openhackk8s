@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft-deployment
+  labels:
+    app: minecraft
+    version: "2.0"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minecraft
+  template:
+    metadata:
+      labels:
+        app: minecraft
+        version: "2.0"
+    spec:
+      containers:
+      - name: minecraft
+        image: openhack/minecraft-server:2.0
+        ports:
+        - containerPort: 25565
+          protocol: TCP
+        - containerPort: 25575
+          protocol: TCP
+        env:
+        - name: EULA
+          value: "TRUE"
