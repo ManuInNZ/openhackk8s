@@ -8,4 +8,6 @@ minecraft:
   minecraftPort: 25565
   rconPort: 25575
 
+metrics:
+  image: "forktrucka/minecraft-metrics:v1.0"
 

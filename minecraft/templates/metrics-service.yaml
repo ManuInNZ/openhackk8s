@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: "metrics-service-{{ .Release.Name }}"
+  annotations:
+    prometheus.io/scope: 'true'
+spec:
+  selector:
+    app: metrics
+  ports:
+  - name: web
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: ClusterIP
