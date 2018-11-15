@@ -94,6 +94,4 @@ app.get("/metrics", (req, res) => {
 server.listen(port);
 console.log("location server listening on port: " + port);
 
-promClient.collectDefaultMetrics();
-
 module.exports = server;
