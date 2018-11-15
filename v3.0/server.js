@@ -62,7 +62,7 @@ function getPlayerMetrics() {
 }
 
 function getPopulation() {
-    population = exec('ls -l /metrics/world/playerdata | wc -l', (error, stdout, stderr) => {
+    population = exec('ls /metrics/world/playerdata | wc -l', (error, stdout, stderr) => {
             console.log(`Population ${stdout}`);
             console.log(`${stderr}`);
             if (error !== null) {
