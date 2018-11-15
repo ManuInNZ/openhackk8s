@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-deployment"
+  labels:
+    app: "minecraft-{{.Release.Name }}"
+    version: {{ .Values.minecraft.version}}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "minecraft-{{.Release.Name }}"
+  template:
+    metadata:
+      labels:
+        app: "minecraft-{{.Release.Name }}"
+        version: {{ .Values.minecraft.version}}
+    spec:
+      containers:
+      - name: minecraft
+        image: {{ .Values.minecraft.image }}
+        ports:
+        - containerPort: {{ .Values.minecraft.minecraftPort }}
+          protocol: TCP
+        - containerPort: {{ .Values.minecraft.rconPort }}
+          protocol: TCP
+        env:
+        - name: EULA
+          value: "TRUE"
+        volumeMounts:
+        - mountPath: "/data"
+          name: "minecraft-data-{{ .Release.Name }}"
+      - name: metrics
+        image: alpine:3.8
+        command: [ "/bin/sh", "-c", "--" ]
+        args: [ "while true; do sleep 30; done;" ]
+        volumeMounts:
+        - mountPath: "/metrics"
+          name: "minecraft-data-{{ .Release.Name }}"
+          readOnly: true
+      volumes:
+      - name: "minecraft-data-{{ .Release.Name }}"
+        persistentVolumeClaim:
+          claimName: "minecraft-data-pvc-{{ .Release.Name }}"

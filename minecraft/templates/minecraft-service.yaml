@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: "minecraft-service-{{ .Release.Name }}"
+spec:
+  selector:
+    app: "minecraft-{{.Release.Name }}"
+  ports:
+  - name: minecraft
+    protocol: TCP
+    port: {{ .Values.minecraft.minecraftPort }}
+    targetPort: {{ .Values.minecraft.minecraftPort }}
+  - name: rcon
+    protocol: TCP
+    port: {{ .Values.minecraft.rconPort }}
+    targetPort: {{ .Values.minecraft.rconPort }}
+  type: LoadBalancer
