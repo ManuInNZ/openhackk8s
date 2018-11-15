@@ -4,14 +4,14 @@ metadata:
   name: "minecraft-service-{{ .Release.Name }}"
 spec:
   selector:
-    app: "minecraft-{{.Release.Name }}"
+    app: "minecraft-{{ .Release.Name }}"
   ports:
   - name: minecraft
     protocol: TCP
-    port: {{ .Values.minecraft.minecraftPort }}
-    targetPort: {{ .Values.minecraft.minecraftPort }}
+    port: {{ int .Values.minecraft.minecraftPort }}
+    targetPort: {{ int .Values.minecraft.minecraftPort }}
   - name: rcon
     protocol: TCP
-    port: {{ .Values.minecraft.rconPort }}
-    targetPort: {{ .Values.minecraft.rconPort }}
+    port: {{ int .Values.minecraft.rconPort }}
+    targetPort: {{ int .Values.minecraft.rconPort }}
   type: LoadBalancer

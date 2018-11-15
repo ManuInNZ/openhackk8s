@@ -4,7 +4,7 @@ metadata:
   name: "{{ .Release.Name }}-deployment"
   labels:
     app: "minecraft-{{.Release.Name }}"
-    version: {{ .Values.minecraft.version}}
+    version: "{{ .Values.minecraft.version }}"
 spec:
   replicas: 1
   selector:
@@ -14,15 +14,15 @@ spec:
     metadata:
       labels:
         app: "minecraft-{{.Release.Name }}"
-        version: {{ .Values.minecraft.version}}
+        version: "{{ .Values.minecraft.version }}"
     spec:
       containers:
       - name: minecraft
         image: {{ .Values.minecraft.image }}
         ports:
-        - containerPort: {{ .Values.minecraft.minecraftPort }}
+        - containerPort: {{ int .Values.minecraft.minecraftPort }}
           protocol: TCP
-        - containerPort: {{ .Values.minecraft.rconPort }}
+        - containerPort: {{ int .Values.minecraft.rconPort }}
           protocol: TCP
         env:
         - name: EULA

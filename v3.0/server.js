@@ -4,6 +4,8 @@ const express = require("express"),
   server = require("http").createServer(app),
   exec = require("child_process").exec;
 
+require('node-rcon');
+
 let port = process.env.PORT || 3030;
 
 var currentPlayers =  0;
@@ -29,6 +31,7 @@ function getPlayerMetrics() {
       currentPlayers = result[2];
       currentMaxPlayers = result[6];
       console.log("Current: " + currentPlayers);
+
       /// playerGauge.set(currentPlayers); with the right label 
 
     })
