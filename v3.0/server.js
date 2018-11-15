@@ -5,7 +5,7 @@ const express = require("express"),
     exec = require("child_process").exec,
     rcon = require("rcon");
 
-let port = process.env.PORT || 3030;
+let port = process.env.PORT || 8080;
 
 
 var currentPopulationGauge = new promClient.Gauge({
