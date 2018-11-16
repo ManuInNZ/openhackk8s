@@ -2,9 +2,12 @@ kind: Service
 apiVersion: v1
 metadata:
   name: "minecraft-service-{{ .Release.Name }}"
+  labels: {
+   "type": "minecraft" 
+  }
 spec:
   selector:
-    app: "minecraft-{{ .Release.Name }}"
+    app: "minecraft"
   ports:
   - name: minecraft
     protocol: TCP

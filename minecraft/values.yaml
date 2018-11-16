@@ -2,6 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+
 minecraft:
   version: "3.0"
   image: "openhack/minecraft-server:2.0"
@@ -9,5 +10,5 @@ minecraft:
   rconPort: 25575
 
 metrics:
-  image: "forktrucka/minecraft-metrics:v1.0"
-
+  image: "forktrucka/minecraft-metrics:v1.2"
+  

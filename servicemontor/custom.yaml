@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: minecraft-exporter
+    k8s-app: minecraft-metrics
+    prometheus: kube-prometheus
+  name: kube-prometheus-exporter-minecraft
+  namespace: monitoring
+spec:
+  endpoints:
+  - interval: 15s
+    port: web
+  namespaceSelector:
+    matchNames:
+    - default
+  selector:
+    matchLabels:
+      app: minecraft-exporter

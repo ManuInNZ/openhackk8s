@@ -1,2 +1,3 @@
 Get the application URL by running these commands until the public IP address is available
   kubectl -n {{ .Release.Namespace }} get service minecraft-service-{{ .Release.Name }} -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
+  

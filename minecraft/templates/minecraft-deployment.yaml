@@ -9,11 +9,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "minecraft-{{.Release.Name }}"
+      app: "minecraft"
   template:
     metadata:
       labels:
-        app: "minecraft-{{.Release.Name }}"
+        app: "minecraft"
         version: "{{ .Values.minecraft.version }}"
     spec:
       containers:

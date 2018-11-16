@@ -2,8 +2,11 @@ kind: Service
 apiVersion: v1
 metadata:
   name: "metrics-service-{{ .Release.Name }}"
-  annotations:
-    prometheus.io/scope: 'true'
+  labels: {
+    app: "minecraft-exporter"
+  }
+  # annotations:
+  #   prometheus.io/scrape: 'true'
 spec:
   selector:
     app: metrics
